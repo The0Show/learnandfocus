@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Learn and Focus</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body>
+		<div
+			class="modal"
+			id="staticBackdrop"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="staticBackdropLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-body">
+						As you read, think about what interests you the most.
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-primary"
+							data-bs-dismiss="modal"
+						>
+							Start
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div
+			id="page"
+			style="position: absolute; left: 0; right: 0; bottom: 0; top: 0px"
+		>
+			<iframe
+				width="100%"
+				height="100%"
+				frameborder="0"
+				src="https://en.wikipedia.org/wiki/Special:Random"
+			></iframe>
+
+			<h1>All done?</h1>
+			<h4>Take a moment to reflect on</h4>
+			<textarea
+				class="form-control"
+				placeholder="This is your notebook. Write as much (or as little) as you want."
+			></textarea>
+			<button type="button" class="btn btn-primary" id="finishButton">
+				Finish
+			</button>
+			<br />
+		</div>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+			crossorigin="anonymous"
+		></script>
+
+		<script src="learn.js"></script>
+
+		<script>
+			window.scrollTo(0, 0);
+
+			const questions = [
+				"what interested you the most.",
+				"your favorite part of this article.",
+				"something you learned from this article.",
+				"what hooked your interest.",
+				"what questions you have after reading this article.",
+				"what you find strange.",
+			];
+
+			const question = questions[Math.floor(Math.random() * questions.length)];
+
+			document.querySelector(
+				'[class="modal-body"]'
+			).innerText = `As you read, think about ${question}`;
+
+			document.querySelector(
+				"h4"
+			).innerText = `Take a moment to reflect on ${question}`;
+
+			const myModal = new bootstrap.Modal(
+				document.getElementById("staticBackdrop"),
+				{}
+			);
+
+			myModal.show();
+		</script>
+	</body>
+</html>
